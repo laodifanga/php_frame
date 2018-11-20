@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Error</title>
+  <style>
+    * {margin:0; padding: 0;}
+    .error {padding: 0 1em;  font-family: Verdana; word-break: break-all;}
+    .sign {font-size: 4em; line-height: 1; color: #888;}
+    .msg {color: #333; margin: .5em 0; font-size: 2em; font-family: Microsoft YaHei;}
+    .msg sup {color: #999; display: inline-block; margin-right: .5em; font-weight: 700;}
+    .tip {font-size: 14px; color: #999; }
+    .info {color: #333; padding: .5em 0; margin: 0 0 1em 0; font-size: 14px;}
+    .line {display: inline-block; margin-right: .5em;  }
+    .file {letter-spacing: .05em;  }
+    .trace {font-size: 12px; background: #f3f3f3; color: #999; margin: .5em 0;}
+    .trace .item {padding: .5em; }
+    .trace .item:nth-child(2n) {background: #fafafa;}
+    .version {font-size: 12px; color: #ccc; margin-top: 5em;}
+    .version b{font-size: 14px; color: #333;}
+    .version sub, .version small{color: #fff;}
+  </style>
+</head>
+<body>
+  <div class="error">
+    <!-- <div class="sign"><span>◑﹏◐</span></div> -->
+    <div class="msg"><sup>: (</sup> <?=$msg?> </div>
+    <b class="tip">错误位置</b>
+    <div class="info">
+      <b class="line">:<?=$line?></b><span class="file">FILE: <?=$file?></span>
+    </div>
+
+    <?php if(!empty($trace)) {?>
+      <b class="tip">TRACE</b>
+      <div class="trace">
+        <?php foreach($trace as $t){ ?>
+          <?php if(isset($t['line']) && isset($t['file'])) {?>
+            <div class="item">
+              <b>:<?=$t['line']?></b>
+              FILE: <?=$t['file']?>
+            </div>
+          <?php } ?>
+        <?php } ?>
+      </div>
+    <?php } ?>
+
+    <div class="version">
+      <b>F</b> <span>rame</span>
+      <sup><?=VERSION?></sup>
+      <span>[ A framework for interfaces ]</span>
+      <sub>QQ</sub>
+      <small>⁴⁷¹²¹⁸⁶²</small>
+    </div>
+  </div>
+</body>
+</html>
