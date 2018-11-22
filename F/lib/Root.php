@@ -4,7 +4,7 @@
  * @Author: LDF
  * @Date:   2018-11-14 16:27:01
  * @Last Modified by:   LDF
- * @Last Modified time: 2018-11-20 10:49:13
+ * @Last Modified time: 2018-11-22 09:32:17
  */
 final class Root {
   static public function start() {
@@ -85,10 +85,17 @@ final class Root {
 
     // p($dirs);
 
+    // 判断modlue目录
+    if(!is_dir(MODULE_PATH. M)) {
+      throw new \Exception('模块'. M. '不存在');
+    }
+
     $re = false;
     foreach ($dirs as $dir) {
       $file = $dir. $name. EXT;
-      if($re = File::load($file)) break; // 找到文件为止
+      if($re = File::load($file)) {
+        break; // 找到文件为止
+      }
     }
 
     // echo $name;
